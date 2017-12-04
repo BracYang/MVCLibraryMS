@@ -1,0 +1,44 @@
+﻿@using MVCtest.Models
+@model BookModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddNew</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Add", "Book", IsPost))
+        {
+        <table>
+            <tr>
+                <td>书名：</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Name,new { @class="text"})
+                </td>
+            </tr>
+            <tr>
+                <td>价格：</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Price, new { @class = "text" })
+                </td>
+            </tr>
+        </table>
+        <input type="button" value="重置" onclick="Reset()"/>
+        <input type="submit" name="BtnSubmit" value="保存"/>
+        <input type="submit" name="BtnSubmit" value="取消"/>
+        
+        }
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script>
+    function Reset() {
+        $(".text").val("");
+    }
+</script>

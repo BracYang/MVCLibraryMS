@@ -1,16 +1,18 @@
-﻿
+﻿@using MVCtest.Models
+@model List<BookModel>
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
+<link href="~/Scripts/css/common.css" rel="stylesheet" />
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>List</title>
 </head>
 <body>
+    <a href="/Book/AddNew" class="btn">添加</a>
     <div> 
         <table>
             <thead>
@@ -22,11 +24,14 @@
             </thead>
             <tbody>
                 @{
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Price.ToString("￥0.00")</td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>
