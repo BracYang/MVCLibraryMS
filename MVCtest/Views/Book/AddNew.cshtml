@@ -18,7 +18,12 @@
             <tr>
                 <td>书名：</td>
                 <td>
-                    @Html.TextBoxFor(m => m.Name,new { @class="text"})
+                    @Html.TextBoxFor( m => m.Name,new { @class="text",@name="Name"})
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    @Html.ValidationMessage("Name")
                 </td>
             </tr>
             <tr>

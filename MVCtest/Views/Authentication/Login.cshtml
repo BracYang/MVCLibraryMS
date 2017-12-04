@@ -1,0 +1,30 @@
+﻿@using MVCtest.Models
+@model UserLogin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div> 
+        @Html.ValidationMessage("Credential", new { style="color:red"})
+        @using (Html.BeginForm("DoLogin","Authentication",IsPost))
+        {
+            @Html.LabelFor(c=>c.UserName)
+            @Html.TextBoxFor(c=>c.UserName)
+            @Html.ValidationMessageFor(c=>c.UserName)
+            <br />
+            @Html.LabelFor(c=>c.Password)
+            @Html.TextBoxFor(c=>c.Password)
+            <br />
+            <input type="submit" name="BtnSubmit" value="登录"/>
+        }
+    </div>
+</body>
+</html>

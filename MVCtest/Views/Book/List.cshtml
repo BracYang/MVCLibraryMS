@@ -13,7 +13,9 @@
 </head>
 <body>
     <a href="/Book/AddNew" class="btn">添加</a>
-    <div> 
+
+    <a href="/Authentication/Logout" class="btn">注销</a>
+    <div>
         <table>
             <thead>
                 <tr>
@@ -23,15 +25,15 @@
                 </tr>
             </thead>
             <tbody>
-                @{
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>@item.Price.ToString("￥0.00")</td>
-                        </tr>
-                    }
+                @foreach (var item in Model)
+                {
+                    var price = @item.Price.ToString("￥0.00");
+
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>price</td>
+                    </tr>
                 }
             </tbody>
         </table>

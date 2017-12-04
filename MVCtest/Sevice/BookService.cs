@@ -21,5 +21,28 @@ namespace MVCtest.Sevice
             libraryDal.SaveChanges();
             return model;
         }
+
+        public bool IsValidUser(UserLogin u)
+        {
+            if (u.UserName=="a"&&u.Password=="1")
+                return true;
+            return false;
+        }
+
+        public UserStatus GetUserValidity(UserLogin u)
+        {
+            if (u.UserName=="admin"&&u.Password=="1")
+            {
+                return UserStatus.AuthenticatedAdmin;
+            }
+            if (u.UserName == "user" && u.Password == "1")
+            {
+                return UserStatus.AuthenticatedUser;
+            }
+            else
+            {
+                return UserStatus.NonAuthenticatedUser;
+            }
+        }
     }
 }
