@@ -29,12 +29,30 @@ namespace MVCtest.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_service.IsValidUser(u))
+                UserStatus status = _service.GetUserValidity(u);
+                bool IsAdmin = false;
+                if (status ==UserStatus.AuthenticatedAdmin)
                 {
-                    FormsAuthentication.SetAuthCookie(u.UserName, false);
-                    return RedirectToAction("Index", "Book");
+                    IsAdmin = true;
                 }
-                ModelState.AddModelError("Credential", "YOU ARE NOT OUR BRO");
+                else if (status==UserStatus.AuthenticatedUser)
+                {
+                    IsAdmin = false;
+                }
+                else
+                {
+                    ModelState.AddModelError("Credential", "YOU ARE NOT OUR BRO");
+                    return View("Login");
+                }
+                FormsAuthentication.SetAuthCookie(u.UserName,false);
+                Session["IsAdmin"] = IsAdmin;
+                return RedirectToAction("Index", "Book");
+                //if (_service.IsValidUser(u))
+                //{
+                //    FormsAuthentication.SetAuthCookie(u.UserName, false);
+                //    return RedirectToAction("Index", "Book");
+                //}
+                //ModelState.AddModelError("Credential", "YOU ARE NOT OUR BRO");
             }
             return View("Login");
         }

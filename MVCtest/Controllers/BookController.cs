@@ -30,6 +30,20 @@ namespace MVCtest.Controllers
             return View();
         }
 
+        public PartialViewResult AddLink()
+        {
+            return PartialView();
+        }
+
+        public ActionResult GetAddLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddLink");
+            }
+            return new EmptyResult();
+        }
+
        
 
         public ActionResult Add(BookModel model,string BtnSubmit)

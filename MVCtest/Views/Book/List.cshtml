@@ -12,9 +12,13 @@
     <title>List</title>
 </head>
 <body>
-    <a href="/Book/AddNew" class="btn">添加</a>
+    @*<a href="/Book/AddNew" class="btn">添加</a>*@
 
     <a href="/Authentication/Logout" class="btn">注销</a>
+
+    @{ 
+        Html.RenderAction("GetAddLink");
+    }
     <div>
         <table>
             <thead>
